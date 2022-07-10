@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+          <meta charset="UTF-8">
+          <meta http-equiv="X-UA-Compatible" content="IE=edge">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Throw Dice</title>
+          <style>
+                    #winner{
+                              width: 500px;
+                              height: 60px;
+                              background-color: rgb(217, 205, 228);
+                              margin-bottom: 40px;
+                              margin: auto;
+                              justify-content: center;
+                              text-align: center;
+                              font-size: 40px;
+                    }
+                    #main{
+                              display: flex;
+                              flex-direction: row;
+                              width: 500px;
+                              height: 160px;
+                              margin: auto;
+                              margin-bottom: 20px;
+                              margin-top: 40px;
+                    }
+                    #member-1,#member-2,#member-3{
+                              width: 150px;
+                              height: 150px;
+                              margin: auto;
+                              border: 1px black solid;
+                              margin-left: 30px;
+                              text-align: center;
+                              font-size: 100px;
+                              transition: 1s;
+                    }
+                    #roll{
+                              border: 1px black solid;
+                              margin-left: 45%;
+                              background-color: burlywood;
+                              font-size: 15px;
+                              font-weight: bold;
+                    }
+                    #green{
+                              width: 150px;
+                              height: 150px;
+                              margin: auto;
+                              border: 1px black solid;
+                              margin-bottom: 30px;
+                              text-align: center;
+                              font-size: 100px;
+                              transition: 1s;
+                              background-color: rgb(111, 205, 111);
+                    }
+                    #loose{
+                              width: 150px;
+                              height: 150px;
+                              margin: auto;
+                              border: 1px black solid;
+                              margin-bottom: 30px;
+                              text-align: center;
+                              font-size: 100px;
+                              transition: 1s;
+                              background-color: rgb(237, 104, 104);
+                    }
+                    #middle{
+                              width: 150px;
+                              height: 150px;
+                              margin: auto;
+                              border: 1px black solid;
+                              margin-bottom: 30px;
+                              text-align: center;
+                              font-size: 100px;
+                              transition: 1s;
+                              background-color: yellow;
+                    }
+                    #blue{
+                              width: 150px;
+                              height: 150px;
+                              margin: auto;
+                              border: 1px black solid;
+                              margin-bottom: 30px;
+                              text-align: center;
+                              font-size: 100px;
+                              transition: 1s;
+                              background-color: rgb(107, 107, 230);
+                    }
+          </style>
+</head>
+<body>
+          <div id="winner"></div>
+          <div id="main">
+                    <div id="member-1"></div >
+                    <div id="member-2"></div >
+                    <div id="member-3"></div >
+                            
+          </div>
+          <button id="roll" onclick="random()">ROLL THE DICE</button>
+</body>
+</html>
+<script>
+          function random(){
+                    
+                  
+                    document.querySelector("#member-1").style.transform = 'rotate(360deg)';
+                    document.querySelector("#member-2").style.transform = 'rotate(360deg)';
+                    document.querySelector("#member-3").style.transform = 'rotate(360deg)';
+
+                    document.querySelector("#member-1").innerText=Math.ceil(Math.random()*6)
+                    document.querySelector("#member-2").innerText=Math.ceil(Math.random()*6)
+                    document.querySelector("#member-3").innerText=Math.ceil(Math.random()*6)
+
+                    
+          
+                    var A=document.querySelector("#member-1").innerText
+                    var B=document.querySelector("#member-2").innerText
+                    var C=document.querySelector("#member-3").innerText
+
+                    if(A>B && A>C){
+                              document.querySelector("#member-1").setAttribute("id","green") 
+                              document.querySelector("#winner").innerText="Won-Member-A"
+                    }
+                    if(A<B && A<C){
+                              document.querySelector("#member-1").setAttribute("id","loose") 
+                    }
+                    if((A>B && A<C) || (A<B && A>C))
+                    {
+                              document.querySelector("#member-1").setAttribute("id","middle") 
+                    }
+                    if(A==B && A==C  && B==C && A!="" && B!="" && C!=""){
+                              document.querySelector("#member-1").setAttribute("id","blue")  
+                              document.querySelector("#member-2").setAttribute("id","blue")  
+                              document.querySelector("#member-3").setAttribute("id","blue")  
+                    }
+                    if(A==B && A!="" && B!=""){
+                              document.querySelector("#member-1").setAttribute("id","blue")  
+                              document.querySelector("#member-2").setAttribute("id","blue")  
+                    } 
+                     if(A==C && A!="" && C!="" ){
+                              document.querySelector("#member-1").setAttribute("id","blue")  
+                              document.querySelector("#member-3").setAttribute("id","blue") 
+                    }
+                    
+                   
+                    
+
+                    if(B>A && B>C){
+                              document.querySelector("#member-2").setAttribute("id","green") 
+                              document.querySelector("#winner").innerText="Won-Member-B"
+                    }
+                    if(A>B && B<C){
+                              document.querySelector("#member-2").setAttribute("id","loose") 
+                    }if((A>B && C<B) || (A<B && C>B))
+                    {
+                              document.querySelector("#member-2").setAttribute("id","middle") 
+                    }
+                    if(B==C &&  C!="" && B!=""){
+                              document.querySelector("#member-2").setAttribute("id","blue")  
+                              document.querySelector("#member-3").setAttribute("id","blue")  
+                    }
+
+
+
+                    if(C>A && B<C){
+                              document.querySelector("#member-3").setAttribute("id","green") 
+                              document.querySelector("#winner").innerText="Won-Member-C"
+                    }
+                    if(A>C && B>C){
+                              document.querySelector("#member-3").setAttribute("id","loose") 
+                              
+                    }
+                    if((A>C && C>B) || (C<B && C>A))
+                    {
+                              document.querySelector("#member-3").setAttribute("id","middle") 
+                    }
+                   
+                   
+          }        
+                    
+          
+          
+          
+</script>
